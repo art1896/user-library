@@ -2,7 +2,6 @@ package com.example.userlibrary;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,25 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
-        newUserImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);
-
-
-            }
+        newUserImageView.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddActivity.class);
+            startActivity(intent);
         });
-
-        membersImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MembersActivity.class);
-                startActivity(intent);
-
-            }
+        membersImageView.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MembersActivity.class);
+            startActivity(intent);
         });
-
-
     }
 }

@@ -39,14 +39,12 @@ public class MembersActivity extends AppCompatActivity implements UserAdapter.Us
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ImageButton homeButton = findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        homeButton.setOnClickListener(v -> {
+            finish();
+            InfoDialog.editing = false;
         });
-    }
 
+    }
 
     @Override
     protected void onStart() {
@@ -59,10 +57,8 @@ public class MembersActivity extends AppCompatActivity implements UserAdapter.Us
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     User user = userSnapshot.getValue(User.class);
                     arrayList.add(user);
-
                     userAdapter = new UserAdapter(arrayList, MembersActivity.this, MembersActivity.this);
                     recyclerView.setAdapter(userAdapter);
-
                 }
                 progressBar.setVisibility(View.GONE);
             }
@@ -73,6 +69,7 @@ public class MembersActivity extends AppCompatActivity implements UserAdapter.Us
         });
     }
 
+
     @Override
     public void onItemClick(int position) {
         pos = position;
@@ -81,6 +78,5 @@ public class MembersActivity extends AppCompatActivity implements UserAdapter.Us
 
     private void openDialog() {
         dialog.show(getSupportFragmentManager(), "info");
-
     }
 }
